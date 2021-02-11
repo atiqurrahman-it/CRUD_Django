@@ -1,0 +1,48 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+ body {
+     background-color: #f9f9fa
+ }
+.header_part{
+    background-color: #e8de61;
+
+}
+.header_part h1{
+    text-align: center;
+    padding: 5px 1px;
+    font-family: serif;
+
+}
+.header_second_part{
+    background-color: #bbb350;
+
+}
+.header_second_part h1{
+    text-align: center;
+    padding: 5px 1px;
+    font-family: serif;
+
+}
+
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+
+
+
+.atiqur_button_create {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 150px;
+    height: 50px;
+    text-transform: uppercase;
+    font-family: emoji;
+    padding: 5px;
+}

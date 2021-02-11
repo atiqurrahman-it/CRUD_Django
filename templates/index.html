@@ -1,0 +1,174 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>-->
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+      <!-- Bootstrap CSS -->
+       <script src="{% static 'css/dataTables_min.css'%}"> </script>
+
+    <link rel="stylesheet" href="{% static 'css/boostrap_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+    <title> Crud </title>
+  </head>
+  <body>
+
+  <div class="container">
+      <div class="header_part mt-5">
+          <h1> Function base modelform CRUD Project </h1>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="header_second_part mt-1">
+                  <h1> Total Show Student </h1>
+              </div>
+          </div>
+          <div class="col-md-6">
+
+              <div class="mt-1 d-flex flex-row-reverse">
+                  <button class="btn btn-primary atiqur_button_create" data-toggle="modal" data-target="#create_student_model">Create student </button>
+              </div>
+
+
+          </div>
+      </div>
+
+
+      <div class="row">
+          <div class="col-12">
+              <table  style="width:100%" class="display mt-3" id="my_table">
+                  {% csrf_token %}
+                <thead>
+                  <tr>
+                      <th> SN </th>
+                      <th> Name </th>
+                      <th> Department </th>
+                      <th> Email </th>
+                      <th> Action </th>
+                  </tr>
+                   </thead>
+                   <tbody>
+              {% for p in total_Student %}
+                  <tr>
+                      <td> {{p.pk}} </td>
+                      <td> {{p.Name}} </td>
+                      <td> {{p.Department}} </td>
+                      <td> {{p.Email}} </td>
+                      <td class="text-center">
+                          <a href="{% url 'edit' id=p.id %}"> <i class="fas fa-edit"></i></a>  |
+                          <a href="{% url 'delete' id=p.id %}" onclick="return confirm('Are you sure delete?')"> <i class="fas fa-trash"></i></a>
+<!--                       <a href="{% url 'delete' id=p.id %}" data-toggle="modal" data-target="#staticBackdrop"> <i class="fas fa-trash"></i></a>-->
+                      </td>
+                  </tr>
+                   {%endfor%}
+                  </tbody>
+
+              </table>
+          </div>
+
+      </div>
+
+  </div>
+
+
+<!--  student create modal start -->
+  <!-- Modal -->
+<div class="modal fade" id="create_student_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> Add student </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div>
+             <form action="" method="post">
+                 {% csrf_token %}
+                 <div class="form-group">
+                    <label for="formGroupExampleInput"> Name <span style="color:#ff0000;"> * </span> </label>
+                    <input type="text" name="name" class="form-control" required id="formGroupExampleInput" placeholder="Enter your Name ">
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Email <span style="color:red;"> * </span> </label>
+                    <input type="email" name="email" required  class="form-control" id="formGroupExampleInput2" placeholder="Enter your  Email ">
+                  </div>
+                 <div class="form-group">
+                    <label for="formGroupExampleInput2">Department <span style="color:red;"> * </span> </label>
+                    <input type="text" name="department" required  class="form-control"  placeholder="Enter your  Department ">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit </button>
+
+             </form>
+         </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--  student create modal End -->
+
+
+<!--  delete button code start -->
+
+<!--  &lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--          <form action="Edit" method="post">-->
+<!--              {% csrf_token %}-->
+<!--                {{ form.as_p}}-->
+<!--                 {{ form.error }}-->
+<!--          </form>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
+<!--        <button type="submit" class="btn btn-primary">DELETE</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--  delete button code End -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{%static 'js/jsfirst.js' %}" ></script>
+    <script src="{%static 'js/jssecond.js' %}" ></script>
+    <script src="{%static 'js/js3rd.js' %}" ></script>
+    <script src="{%static 'js/myjsfile.js' %}" ></script>
+
+    <script src="{%static 'js/dataTables_min.js' %}" ></script>
+
+
+<!--  data table using bootstrap 4 jquery start-->
+
+
+ <script>
+     $(document).ready( function () {
+    $('#my_table').DataTable();
+} );
+
+ </script>
+
+<!--  data table using bootstrap 4 and jquery End -->
+  </body>
+</html>
